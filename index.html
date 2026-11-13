@@ -2,100 +2,156 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Types of Wine</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;600&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="styles.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wine Pairing Quiz</title>
+  <meta name="description" content="A beginner-friendly quiz that answers: what wine goes with what I’m eating?" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍷</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet" />
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Hero -->
-  <header class="hero">
-    <h1>Types of Wine</h1>
-    <p>A simple guide to some of the most popular wine categories, their flavor profiles, and what makes each one unique.</p>
-    <div class="hero-emojis">🍷 🍇 🍾 ✨</div>
+  <header class="site-header">
+    <a class="brand" href="#quiz" aria-label="Uncorked — home">
+      <span class="brand-mark" aria-hidden="true">🍷</span>
+      <span class="brand-name">Uncorked</span>
+    </a>
+    <nav aria-label="Main">
+      <ul class="nav-links">
+        <li><a href="#quiz" data-route="quiz">Find my wine</a></li>
+        <li><a href="#explore" data-route="explore">Explore wines</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <!-- Intro -->
-  <section class="intro-wrap">
-    <div class="intro-card">
-      <h2>A Quick Introduction</h2>
-      <p>Wine can be grouped by color, sweetness, body, and production method. While there are many grape varieties and regional styles, most wines fall into a few broad categories: red, white, rosé, sparkling, and dessert wines. Each offers a different tasting experience and pairs well with different foods.</p>
-    </div>
-  </section>
+  <main id="main">
+    <!-- ───────────── Quiz view ───────────── -->
+    <section id="quiz" class="view" data-view="quiz" aria-labelledby="quiz-title">
+      <header class="quiz-hero">
+        <p class="kicker">The Pairing Issue · A beginner’s guide</p>
+        <h1 id="quiz-title" tabindex="-1">What wine goes with <em>what I’m eating?</em></h1>
+        <p class="lede">Three quick questions. Skip any you’re unsure about, change your mind whenever you like — your matches update as you go.</p>
+      </header>
 
-  <!-- Main categories -->
-  <section class="categories-section">
-    <h2>Main Wine Categories</h2>
+      <div class="quiz-layout">
+        <form id="quiz-form" class="quiz-form" novalidate>
+          <!-- Fieldsets are rendered from src/quiz.ts -->
+          <div id="quiz-questions"></div>
+          <div class="form-actions">
+            <a class="btn btn-primary" href="#results">See my matches <span aria-hidden="true">→</span></a>
+            <button type="reset" class="btn btn-ghost">Start over</button>
+          </div>
+        </form>
 
-    <div class="cards-grid">
-      <div class="wine-card">
-        <span class="emoji">🍷</span>
-        <h3>Red Wine</h3>
-        <p>Made from dark-skinned grapes and fermented with the grape skins, giving red wine its deep color and tannic structure.</p>
-        <div class="examples"><strong>Examples:</strong> Cabernet Sauvignon, Pinot Noir, Merlot, Syrah</div>
+        <section id="results" class="results" aria-labelledby="results-title">
+          <div class="results-head">
+            <p class="kicker">Your pour</p>
+            <h2 id="results-title" tabindex="-1">Your matches</h2>
+            <p id="results-context" class="results-context"></p>
+          </div>
+          <div id="results-body"></div>
+          <p id="results-status" class="sr-only" aria-live="polite" aria-atomic="true"></p>
+          <p class="results-footnote">
+            New to the terms? <a href="#explore">Explore wine styles &amp; beginner tips</a>.
+          </p>
+        </section>
       </div>
+    </section>
 
-      <div class="wine-card">
-        <span class="emoji">🥂</span>
-        <h3>White Wine</h3>
-        <p>Usually made without extended skin contact, resulting in lighter color and often brighter acidity and fruit-forward flavors.</p>
-        <div class="examples"><strong>Examples:</strong> Chardonnay, Sauvignon Blanc, Riesling, Pinot Grigio</div>
-      </div>
+    <!-- ───────────── Explore view (original guide) ───────────── -->
+    <section id="explore" class="view explore" data-view="explore" aria-labelledby="explore-title" hidden>
+      <header class="hero">
+        <h1 id="explore-title" tabindex="-1">Types of Wine</h1>
+        <p>A simple guide to some of the most popular wine categories, their flavor profiles, and what makes each one unique.</p>
+        <div class="hero-emojis" aria-hidden="true">🍷 🍇 🍾 ✨</div>
+        <a class="btn btn-peach" href="#quiz">Take the pairing quiz <span aria-hidden="true">→</span></a>
+      </header>
 
-      <div class="wine-card">
-        <span class="emoji">🌸</span>
-        <h3>Rosé Wine</h3>
-        <p>Produced from red grapes with only brief skin contact, giving it a pink hue and a fresh, crisp style between red and white wine.</p>
-        <div class="examples"><strong>Examples:</strong> Provence Rosé, White Zinfandel, Rosado</div>
-      </div>
+      <section class="intro-wrap" aria-labelledby="intro-title">
+        <div class="intro-card">
+          <h2 id="intro-title">A Quick Introduction</h2>
+          <p>Wine can be grouped by color, sweetness, body, and production method. While there are many grape varieties and regional styles, most wines fall into a few broad categories: red, white, rosé, sparkling, and dessert wines. Each offers a different tasting experience and pairs well with different foods.</p>
+        </div>
+      </section>
 
-      <div class="wine-card">
-        <span class="emoji">🍾</span>
-        <h3>Sparkling Wine</h3>
-        <p>Known for its bubbles, sparkling wine undergoes a second fermentation that creates carbonation and lively texture.</p>
-        <div class="examples"><strong>Examples:</strong> Champagne, Prosecco, Cava, Crémant</div>
-      </div>
-    </div>
+      <section class="categories-section" aria-labelledby="categories-title">
+        <h2 id="categories-title">Main Wine Categories</h2>
 
-    <div class="cards-grid-bottom">
-      <div class="wine-card">
-        <span class="emoji">🍯</span>
-        <h3>Dessert Wine</h3>
-        <p>Typically sweeter and often served in smaller portions, dessert wines are crafted to highlight concentrated sugar and rich flavor.</p>
-        <div class="examples"><strong>Examples:</strong> Port, Sauternes, Ice Wine, Moscato d'Asti</div>
-      </div>
+        <div class="cards-grid">
+          <article class="wine-card">
+            <span class="emoji" aria-hidden="true">🍷</span>
+            <h3>Red Wine</h3>
+            <p>Made from dark-skinned grapes and fermented with the grape skins, giving red wine its deep color and tannic structure.</p>
+            <div class="examples"><strong>Examples:</strong> Cabernet Sauvignon, Pinot Noir, Merlot, Syrah</div>
+          </article>
 
-      <div class="wine-card">
-        <span class="emoji">🧀</span>
-        <h3>Fortified Wine</h3>
-        <p>Fortified wines have a distilled spirit added during production, increasing alcohol content and often contributing complexity and sweetness.</p>
-        <div class="examples"><strong>Examples:</strong> Sherry, Port, Madeira, Marsala</div>
-      </div>
-    </div>
-  </section>
+          <article class="wine-card">
+            <span class="emoji" aria-hidden="true">🥂</span>
+            <h3>White Wine</h3>
+            <p>Usually made without extended skin contact, resulting in lighter color and often brighter acidity and fruit-forward flavors.</p>
+            <div class="examples"><strong>Examples:</strong> Chardonnay, Sauvignon Blanc, Riesling, Pinot Grigio</div>
+          </article>
 
-  <!-- Tips -->
-  <section class="tips-section">
-    <div class="tips-grid">
-      <div class="tip-card">
-        <h3>Body &amp; Texture</h3>
-        <p>Wines are often described as light-bodied, medium-bodied, or full-bodied depending on how heavy and rich they feel on the palate.</p>
-      </div>
-      <div class="tip-card">
-        <h3>Sweetness Levels</h3>
-        <p>Wines can range from bone dry to very sweet. Sweetness depends on how much residual sugar remains after fermentation.</p>
-      </div>
-      <div class="tip-card">
-        <h3>Food Pairing Tip</h3>
-        <p>A simple rule: pair lighter wines with lighter foods and fuller wines with richer, heartier dishes.</p>
-      </div>
-    </div>
-  </section>
+          <article class="wine-card">
+            <span class="emoji" aria-hidden="true">🌸</span>
+            <h3>Rosé Wine</h3>
+            <p>Produced from red grapes with only brief skin contact, giving it a pink hue and a fresh, crisp style between red and white wine.</p>
+            <div class="examples"><strong>Examples:</strong> Provence Rosé, White Zinfandel, Rosado</div>
+          </article>
 
-  <footer>
+          <article class="wine-card">
+            <span class="emoji" aria-hidden="true">🍾</span>
+            <h3>Sparkling Wine</h3>
+            <p>Known for its bubbles, sparkling wine undergoes a second fermentation that creates carbonation and lively texture.</p>
+            <div class="examples"><strong>Examples:</strong> Champagne, Prosecco, Cava, Crémant</div>
+          </article>
+
+          <article class="wine-card">
+            <span class="emoji" aria-hidden="true">🍯</span>
+            <h3>Dessert Wine</h3>
+            <p>Typically sweeter and often served in smaller portions, dessert wines are crafted to highlight concentrated sugar and rich flavor.</p>
+            <div class="examples"><strong>Examples:</strong> Port, Sauternes, Ice Wine, Moscato d'Asti</div>
+          </article>
+
+          <article class="wine-card">
+            <span class="emoji" aria-hidden="true">🧀</span>
+            <h3>Fortified Wine</h3>
+            <p>Fortified wines have a distilled spirit added during production, increasing alcohol content and often contributing complexity and sweetness.</p>
+            <div class="examples"><strong>Examples:</strong> Sherry, Port, Madeira, Marsala</div>
+          </article>
+        </div>
+      </section>
+
+      <section class="tips-section" aria-label="Beginner tips">
+        <div class="tips-grid">
+          <div class="tip-card">
+            <h3>Body &amp; Texture</h3>
+            <p>Wines are often described as light-bodied, medium-bodied, or full-bodied depending on how heavy and rich they feel on the palate.</p>
+          </div>
+          <div class="tip-card">
+            <h3>Sweetness Levels</h3>
+            <p>Wines can range from bone dry to very sweet. Sweetness depends on how much residual sugar remains after fermentation.</p>
+          </div>
+          <div class="tip-card">
+            <h3>Food Pairing Tip</h3>
+            <p>A simple rule: pair lighter wines with lighter foods and fuller wines with richer, heartier dishes.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="explore-cta">
+        <p>Ready to put it into practice?</p>
+        <a class="btn btn-primary" href="#quiz">Find my wine <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
     <p>Designed and created by Angelina</p>
   </footer>
 
+  <script type="module" src="/src/main.ts"></script>
 </body>
 </html>
